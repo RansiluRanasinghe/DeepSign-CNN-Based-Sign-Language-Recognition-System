@@ -1,114 +1,199 @@
-# DeepSign-CNN-Based-Sign-Language-Recognition-System
+# DeepSign: CNN-Based Sign Language Recognition System
 
-DeepSign is a deep learning–powered computer vision system designed to recognize American Sign Language (ASL) alphabet gestures from images.
-The project demonstrates how a Convolutional Neural Network (CNN) can be trained, evaluated, and prepared for real-world inference using a clean, production-style workflow.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+![Keras](https://img.shields.io/badge/Keras-D00000?style=flat-square&logo=keras&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-This system focuses on robust multi-class image classification, model evaluation, and deployable design — making it suitable for portfolios, LinkedIn showcases, and entry-level ML / AI engineering roles.
+DeepSign is a deep learning–powered computer vision system designed to recognize **American Sign Language (ASL)** alphabet gestures from images. The project demonstrates how a Convolutional Neural Network (CNN) can be trained, evaluated, and prepared for real-world inference using a clean, production-style workflow.
 
-⭐ Project Highlights
+This system focuses on robust multi-class image classification, careful model evaluation, and deployable design — making it suitable for portfolios, LinkedIn showcases, and entry-level ML / AI engineering roles.
 
--Built a custom CNN model using TensorFlow to classify ASL hand gestures
--Solved a 24-class image classification problem (excluding motion-based letters J and Z)
--Worked with a realistic MNIST-style vision dataset in CSV format
-=Applied proper data preprocessing and reshaping for CNN input
--Evaluated model performance using accuracy, loss, and confusion matrix
--Saved the trained model for inference and future deployment
--Designed the project with API-readiness in mind for production use
+---
 
-🧠 Problem Overview
+## ⭐ Project Highlights
 
-American Sign Language is a complex and widely used visual language.
-Automated recognition of ASL gestures can help enable:
+- ✅ Built a custom CNN model using TensorFlow to classify ASL hand gesture images
+- ✅ Solved a **24-class image classification problem** (excluding motion-based letters J and Z)
+- ✅ Worked with a realistic image-based dataset organized in class-wise directories
+- ✅ Applied proper image preprocessing and normalization for CNN input
+- ✅ Evaluated model performance using training/validation accuracy, loss, and confusion matrix
+- ✅ Identified the optimal training point based on validation loss trends
+- ✅ Saved the trained model for inference and future deployment
+- ✅ Designed the project with API-readiness in mind for production use
 
--Assistive communication tools
--Human–computer interaction systems
--Educational and accessibility applications
--This project focuses on static ASL alphabet recognition, where each image represents a single hand gesture corresponding to a letter (A–Z, excluding J and Z).
+---
 
-📊 Dataset Information
+## 🧠 Problem Overview
 
--Dataset: Sign Language MNIST
--Source: Coursera Lab (MNIST-style ASL dataset)
--Classes: 24 alphabet letters (A–Z excluding J and Z)
--Image Size: 28 × 28 grayscale
--Format: CSV (label + 784 pixel values)
--Training Samples: ~27,000
--Test Samples: ~7,000
+American Sign Language is a complex and widely used visual language. Automated recognition of ASL gestures can help enable:
 
-The dataset follows the same structure as classic MNIST, making it ideal for CNN-based learning while remaining more challenging and realistic.
+- **Assistive communication tools**
+- **Human–computer interaction systems**
+- **Educational and accessibility applications**
 
-🏗️ Model Architecture (Overview)
+This project focuses on **static ASL alphabet recognition**, where each image represents a single hand gesture corresponding to a letter (A–Z, excluding J and Z).
+
+---
+
+## 📊 Dataset Information
+
+| Property | Details |
+|----------|---------|
+| **Dataset** | Sign Language MNIST (image-based variant) |
+| **Source** | Coursera Lab (derived from the Sign Language MNIST dataset) |
+| **Classes** | 24 alphabet letters (A–Z excluding J and Z) |
+| **Image Size** | 28 × 28 grayscale |
+| **Format** | Image folders (`train/` and `validation/`, class-wise subdirectories) |
+| **Training Samples** | ~27,000 |
+| **Validation Samples** | ~7,000 |
+
+The dataset follows an MNIST-style structure but is stored as images, closely resembling real-world computer vision pipelines used in industry.
+
+---
+
+## 🏗️ Model Architecture
 
 The CNN architecture follows a standard, industry-accepted design:
 
--Convolutional layers for feature extraction
--Max-Pooling layers for spatial reduction
--Fully connected (Dense) layers for classification
--Softmax output for multi-class prediction
--This structure balances performance, simplicity, and interpretability, making it suitable for real-world inference systems.
+```
+Input (28x28x1)
+    ↓
+Convolutional Layers (Feature Extraction)
+    ↓
+Max-Pooling Layers (Spatial Reduction)
+    ↓
+Fully Connected (Dense) Layers
+    ↓
+Softmax Output (24 Classes)
+```
 
-📈 Model Evaluation
+This architecture balances performance, simplicity, and interpretability, making it suitable for real-world inference systems.
 
--The model was evaluated using:
--Training & validation accuracy
--Training & validation loss
--Confusion matrix to analyze class-wise performance
--This ensures the system is not only accurate but also reliable across different gesture classes.
+**Key Components:**
+- Convolutional layers for feature extraction
+- Max-pooling layers for spatial reduction
+- Fully connected (Dense) layers for classification
+- Softmax output for multi-class prediction
 
-🛠️ Tech Stack
+---
 
--Programming Language: Python
--Deep Learning Framework: TensorFlow / Keras
--Data Processing: NumPy, Pandas
--Visualization: Matplotlib, Seaborn
+## 📈 Model Evaluation & Training Strategy
 
-Model Type: Convolutional Neural Network (CNN)
+**Evaluation Metrics:**
+- Training & validation accuracy
+- Training & validation loss
+- Confusion matrix for class-wise performance analysis
 
-🚀 How to Run Locally
-1️⃣ Clone the Repository
-git clone https://github.com/<your-username>/DeepSign-CNN-Based-Sign-Language-Recognition-System.git
+**Training Insights:**
+- Training behavior analysis showed **optimal generalization around epoch 24**, based on minimum validation loss
+- Subsequent epochs indicated mild overfitting, reinforcing an evaluation-driven stopping decision
+- This ensures the model is not only accurate but also reliable and generalizable
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|----------|-------------|
+| **Programming Language** | Python |
+| **Deep Learning Framework** | TensorFlow / Keras |
+| **Data Processing** | NumPy |
+| **Visualization** | Matplotlib, Seaborn |
+| **Model Type** | Convolutional Neural Network (CNN) |
+
+---
+
+## 🚀 How to Run Locally
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/RansiluRanasinghe/DeepSign-CNN-Based-Sign-Language-Recognition-System.git
 cd DeepSign-CNN-Based-Sign-Language-Recognition-System
+```
 
-2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
+```
 
-3️⃣ Train the Model
+### 3️⃣ Train the Model
+Run the training notebook or script to train the CNN and save the model:
+```bash
+# If using Jupyter Notebook
+jupyter notebook
 
-Run the training notebook or script to train the CNN and save the model.
+# Open and run the training notebook
+```
 
-4️⃣ Inference
-
+### 4️⃣ Inference
 The saved model can be loaded to perform predictions on new ASL gesture images.
 
-🔮 Future Improvements
+---
 
--Add FastAPI inference service for real-time predictions
--Support image uploads instead of CSV input
--Improve performance with data augmentation
--Extend to dynamic gestures (motion-based recognition)
--Deploy as a web or mobile application
+## 📂 Project Structure
 
-📌 Why This Project Matters
+```
+DeepSign-CNN-Based-Sign-Language-Recognition-System/
+│
+├── NoteBook/                   # Jupyter notebooks for training
+├── data/                       # Dataset (train and validation)
+│   ├── train/                  # Training images
+│   └── validation/             # Validation images
+├── models/                     # Saved trained models
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project documentation
+```
 
--This project goes beyond model training and focuses on:
--Practical CNN implementation
--Clean data-to-model workflow
--Evaluation-driven development
--Production-oriented thinking
--It reflects how computer vision systems are built in real engineering environments, not just in notebooks.
+---
 
-📂 Repository
+## 🔮 Future Improvements
 
-👉 GitHub: [[Add your repository link here]](https://github.com/RansiluRanasinghe/DeepSign-CNN-Based-Sign-Language-Recognition-System.git)
+- [ ] Add **FastAPI inference service** for real-time predictions
+- [ ] Support **image uploads via REST API**
+- [ ] Improve robustness using **data augmentation**
+- [ ] Extend to **dynamic gestures** (motion-based recognition)
+- [ ] Deploy as a **web or mobile application**
 
-🤝 Let’s Connect
+---
 
--Always open to discussions around:
--Deep learning fundamentals
--Computer vision projects
+## 📌 Why This Project Matters
 
-👉Linked in -> Ransilu Ranasinghe - www.linkedin.com/in/ransilu-ranasinghe-a596792ba
+This project goes beyond basic model training and emphasizes:
 
-ML system design
+✓ **Practical CNN implementation**  
+✓ **Clean image-to-model workflow**  
+✓ **Evaluation-driven decision making**  
+✓ **Production-oriented thinking**
 
-Production-ready AI pipelines
+It reflects how computer vision systems are built in real engineering environments, not just academic notebooks.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Connect
+
+**Ransilu Ranasinghe**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ransilu-ranasinghe-a596792ba)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/RansiluRanasinghe)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:dinisthar@gmail.com)
+
+Always open to discussions around:
+- Deep learning fundamentals
+- Computer vision systems
+- ML system design
+- Production-ready AI pipelines
+
+---
+
+<div align="center">
+
+**⭐ If you find this project helpful, please consider giving it a star!**
+
+</div>
