@@ -45,3 +45,34 @@ async def get_health():
         raise HTTPException(status_code=503, detail="Model not loaded")
 
     return {"status": "ready", "model": "deepsign_model.keras"}
+
+@app.post("/predict", tags=["inference"])
+async def predict(file: UploadFile = File(...)):
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Invalid file type: require only images")
+    
+    try:
+        content = await file.read()
+        processed_image = image_preprocessor(content)
+
+        prediction = ml_models["deepsign"].predict(processed_image)
+
+        predict_idx = np.argmax(prediction[0])
+        confidence = float(np.max(prediction[0]))
+        label = ml_models["labels"][predict_idx]
+
+        return {
+            "prediction": label,
+            "confidence": round(confidence, 4),
+            "metadata": {
+                "input_shape": processed_image.shape,
+                "model_name": "DeeSign_V1"
+            }
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error with inference: {str(e)}")
+    
+    if __name__ == "__main__":
+        import uvicorn
+        uvicorn.run(app, host="0.0.0.0", port=8000)
