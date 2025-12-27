@@ -39,3 +39,9 @@ def image_preprocessor(image_bytes: bytes):
     except Exception as e:
         raise ValueError("Failed to Preprocess: ", str(e))
     
+@app.get("/health", tags=["Monitoring"])
+async def get_health():
+    if "deepsign" not in ml_models:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+
+    return {"status": "ready", "model": "deepsign_model.keras"}
