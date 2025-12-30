@@ -59,6 +59,8 @@ The CNN architecture follows a standard, industry-accepted design:
 ```
 Input (28x28x1)
     ↓
+Augmentation Layers (Data Augmentation)
+    ↓
 Convolutional Layers (Feature Extraction)
     ↓
 Max-Pooling Layers (Spatial Reduction)
@@ -167,6 +169,12 @@ This project goes beyond basic model training and emphasizes:
 ✓ **Production-oriented thinking**
 
 It reflects how computer vision systems are built in real engineering environments, not just academic notebooks.
+
+---
+
+## 😁 Just for curiosity 
+
+An ablation experiment without data augmentation achieved >99% training accuracy but showed signs of overfitting. The final model retains augmentation for better generalization.
 
 ---
 
